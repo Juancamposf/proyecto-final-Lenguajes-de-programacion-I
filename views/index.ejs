@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <a href="/">Inicio</a>
+        <a href="/frase">Frase del día</a>
+    </header>
+    
+    <div class="container">
+        <h1>¡Bienvenido, <%= nombre %>!</h1>
+        <p><%= mensajeBienvenida %></p>
+        <p>Has visitado esta página <%= visitas %> veces.</p>
+        <h2>Juego: Adivina el Número</h2>
+        <p>Intenta adivinar el número entre 1 y 100:</p>
+        <input type="numero" id="adivinar" min="1" max="100" placeholder="Ingresa tu número">
+        <button onclick="juego()">Adivinar</button>
+        
+        <p id="mensajeJuego"></p>
+
+        <button onclick="location.href='/frase'">Ir a frase de día</button>
+    </div>
+    
+    <footer class="footer">
+        &copy; 2024 Mi Aplicación Web. Todos los derechos reservados.
+    </footer>
+
+    <script>
+        // Variables del juego
+        let randomnumero = Math.floor(Math.random() * 100) + 1;
+        let intentos = 0;
+
+        // Función del juego
+        function juego() {
+            const adivinarInput = document.getElementById('adivinar');
+            const adivinar = parseInt(adivinarInput.value);
+            const messageElement = document.getElementById('mensajeJuego');
+
+            if (isNaN(adivinar) || adivinar < 1 || adivinar > 100) {
+                messageElement.textContent = 'Por favor, ingresa un número válido entre 1 y 100.';
+                return;
+            }
+
+            intentos++;
+
+            if (adivinar === randomnumero) {
+                messageElement.textContent = `¡Felicidades! Adivinaste el número ${randomnumero} en ${intentos} intentos.`;
+                messageElement.style.color = 'green';
+                resetear();
+            } else if (adivinar < randomnumero) {
+                messageElement.textContent = 'Intenta con un número mayor.';
+                messageElement.style.color = 'blue';
+            } else {
+                messageElement.textContent = 'Intenta con un número menor.';
+                messageElement.style.color = 'red';
+            }
+        }
+
+        // Función para reiniciar el juego
+        function resetear() {
+            randomnumero = Math.floor(Math.random() * 100) + 1;
+            intentos = 0;
+            document.getElementById('adivinar').value = '';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Frase</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <a href="/">Inicio</a>
+        <a href="/frase">Frase del día</a>
+    </header>
+    
+    <div class="container">
+        <h1>Acerca de esta Aplicación</h1>
+        <p>Esta aplicación fue creada para demostrar lo divertida y dinámica que puede ser una app hecha con Express y NodeJS.</p>
+        <h2>Frase del Día</h2>
+        <p id="frase"><em>"<%= frase %>"</em></p>
+        
+        <button onclick="location.reload()">Otra Frase 😄</button>
+        <button onclick="location.href='/'">Volver al Inicio</button>
+    </div>
+    
+    <footer class="footer">
+        &copy; 2024 Mi Aplicación Web. Todos los derechos reservados.
+    </footer>
+</body>
+</html>
